@@ -1,3 +1,5 @@
+import ThemeToggler from "@/components/ThemeToggler";
+import { Button } from "@/components/ui/button";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 export default function Home() {
@@ -6,12 +8,13 @@ export default function Home() {
       <h1>Welcome to SocialX.</h1>
       <SignedOut>
         <SignInButton mode="modal">
-          <button>Sign In</button>
+          <Button>Sign in</Button>
         </SignInButton>
       </SignedOut>
       <SignedIn>
         <UserButton />
       </SignedIn>
+      <ThemeToggler />
     </div>
   );
 }
