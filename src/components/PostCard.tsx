@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { Textarea } from "./ui/textarea";
 import { formatDistanceToNow } from "date-fns";
-import DeleteAlertDialog from "./DeleteAlertDialog";
+import { DeleteAlertDialog } from "./DeleteAlertDialog";
 
 type Posts = Awaited<ReturnType<typeof getPosts>>;
 type Post = Posts[number];
