@@ -186,7 +186,7 @@ export async function createComment(postId: string, content: string) {
   }
 }
 
-export async function deleteComment(postId: string) {
+export async function deletePost(postId: string) {
   try {
     const userId = await getDbUserID();
 
