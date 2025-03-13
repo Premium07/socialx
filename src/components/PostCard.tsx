@@ -81,7 +81,7 @@ const PostCard = ({
     try {
       setIsDeleting(true);
       const result = await deletePost(post.id);
-      if (result?.success) toast.success("comment deleted successfully");
+      if (result?.success) toast.success("Post deleted");
       else throw new Error(result?.error);
     } catch (error) {
       toast.error("Failed to delete post");
