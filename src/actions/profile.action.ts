@@ -18,6 +18,8 @@ export async function getProfileByUsername(username: string) {
         bio: true,
         location: true,
         website: true,
+        createdAt: true,
+        updatedAt: true,
       },
     });
     return user;
