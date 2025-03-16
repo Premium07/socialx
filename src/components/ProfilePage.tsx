@@ -209,6 +209,7 @@ const ProfilePage = ({
               <FileTextIcon className="size-4" />
               Posts
             </TabsTrigger>
+
             <TabsTrigger
               value="likes"
               className="flex items-center gap-2 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-primary

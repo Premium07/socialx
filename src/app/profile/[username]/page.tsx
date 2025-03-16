@@ -12,7 +12,9 @@ export async function generateMetadata({
 }: {
   params: { username: string };
 }) {
-  const user = await getProfileByUsername(params.username);
+  const { username } = params; // Ensure params is awaited before accessing properties
+  const user = await getProfileByUsername(username);
+
   if (!user) return;
 
   return {
@@ -26,9 +28,10 @@ const ProfilePageServer = async ({
 }: {
   params: { username: string };
 }) => {
-  const user = await getProfileByUsername(params.username);
+  const { username } = await params;
+  const user = await getProfileByUsername(username);
 
-  if (!user) return redirect(`/not-found?username=${params.username}`);
+  if (!user) return redirect(`/not-found?username=${username}`);
 
   const [posts, likedPosts, isCurrentUserFollowing] = await Promise.all([
     getUserPosts(user.id),

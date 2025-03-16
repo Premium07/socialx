@@ -1,21 +1,49 @@
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowLeftIcon, HomeIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function NotFound({
-  searchParams,
+  searchParams = {}, // Set default value to an empty object
 }: {
-  searchParams: { username?: string };
+  searchParams?: { username?: string }; // Make searchParams optional
 }) {
+  const { username } = searchParams;
+
   return (
-    <div className="w-full h-full flex items-center flex-col gap-5 justify-center">
-      <h2>
-        Username with{" "}
-        {searchParams.username ? `"${searchParams.username}"` : ""} is not
-        exist.
-      </h2>
-      <p>Could not find the requested user profile.</p>
-      <Link href="/" className="bg-slate-800 text-white px-4 py-2 rounded-md">
-        Return Home
-      </Link>
+    <div className="min-h-[80vh] grid place-items-center px-4">
+      <Card className="w-full max-w-md">
+        <CardContent className="pt-6">
+          <div className="text-center space-y-6">
+            {/* LARGE 404 TEXT */}
+            <p className="text-8xl font-bold text-primary font-mono">404</p>
+
+            {/* MESSAGE */}
+            <div className="space-y-2">
+              <h2 className="text-2xl font-bold tracking-tight">
+                Username {username ? `"${username}"` : ""} not found
+              </h2>
+            </div>
+
+            {/* ACTION BUTTONS */}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button variant="default" asChild>
+                <Link href="/">
+                  <HomeIcon className="mr-2 size-4" />
+                  Back to Home
+                </Link>
+              </Button>
+
+              <Button variant="outline" asChild>
+                <Link href="/">
+                  <ArrowLeftIcon className="mr-2 size-4" />
+                  Home
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

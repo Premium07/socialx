@@ -23,6 +23,7 @@ import Link from "next/link";
 const MobileNavbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { isSignedIn } = useAuth();
+  // console.log(isS);
   //   const { theme, setTheme } = useTheme();
 
   return (
@@ -69,7 +70,7 @@ const MobileNavbar = () => {
                   className="flex items-center gap-3 justify-start"
                   asChild
                 >
-                  <Link href="/profile">
+                  <Link href={`/profile/`}>
                     <UserIcon className="size-5" />
                     Profile
                   </Link>
