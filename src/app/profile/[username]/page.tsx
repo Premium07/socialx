@@ -12,7 +12,7 @@ export async function generateMetadata({
 }: {
   params: { username: string };
 }) {
-  const { username } = params; // Ensure params is awaited before accessing properties
+  const { username } = await params; // Ensure params is awaited before accessing properties
   const user = await getProfileByUsername(username);
 
   if (!user) return;
