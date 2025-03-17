@@ -23,8 +23,7 @@ import Link from "next/link";
 const MobileNavbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { isSignedIn } = useAuth();
-  // console.log(isS);
-  //   const { theme, setTheme } = useTheme();
+  // const { theme, setTheme } = useTheme();
 
   return (
     <section className="flex md:hidden items-center space-x-2">

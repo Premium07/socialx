@@ -1,15 +1,9 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeftIcon, HomeIcon } from "lucide-react";
-import Link from "next/link";
+import { HomeIcon, ArrowLeftIcon } from "lucide-react";
 
-export default function NotFound({
-  searchParams = {}, // Set default value to an empty object
-}: {
-  searchParams?: { username?: string }; // Make searchParams optional
-}) {
-  const { username } = searchParams;
-
+export default function NotFound() {
   return (
     <div className="min-h-[80vh] grid place-items-center px-4">
       <Card className="w-full max-w-md">
@@ -20,9 +14,8 @@ export default function NotFound({
 
             {/* MESSAGE */}
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold tracking-tight">
-                Username {username ? `"${username}"` : ""} not found
-              </h2>
+              <h1 className="text-2xl font-bold tracking-tight">User not found</h1>
+              <p className="text-muted-foreground">The user you&apos;re looking for doesn&apos;t exist.</p>
             </div>
 
             {/* ACTION BUTTONS */}
@@ -34,12 +27,12 @@ export default function NotFound({
                 </Link>
               </Button>
 
-              <Button variant="outline" asChild>
+              {/* <Button variant="outline" asChild>
                 <Link href="/">
                   <ArrowLeftIcon className="mr-2 size-4" />
                   Home
                 </Link>
-              </Button>
+              </Button> */}
             </div>
           </div>
         </CardContent>

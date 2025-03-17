@@ -5,7 +5,7 @@ import {
   isFollowing,
 } from "@/actions/profile.action";
 import ProfilePage from "@/components/ProfilePage";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -31,7 +31,7 @@ const ProfilePageServer = async ({
   const { username } = await params;
   const user = await getProfileByUsername(username);
 
-  if (!user) return redirect(`/not-found?username=${username}`);
+  if (!user) notFound();
 
   const [posts, likedPosts, isCurrentUserFollowing] = await Promise.all([
     getUserPosts(user.id),
