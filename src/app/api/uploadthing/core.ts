@@ -7,7 +7,7 @@ export const ourFileRouter = {
   // define routes for different upload types
   postImage: f({
     image: {
-      maxFileSize: "8MB",
+      maxFileSize: "4MB",
       maxFileCount: 1,
     },
   })
@@ -21,7 +21,7 @@ export const ourFileRouter = {
     })
     .onUploadComplete(async ({ metadata, file }) => {
       try {
-        return { fileUrl: file.url };
+        return { fileUrl: file.ufsUrl };
       } catch (error) {
         console.error("Error in onUploadComplete:", error);
         throw error;

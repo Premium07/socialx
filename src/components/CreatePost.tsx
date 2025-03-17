@@ -9,6 +9,7 @@ import { Button } from "./ui/button";
 import { ImageIcon, Loader2Icon, SendIcon } from "lucide-react";
 import { createPost } from "@/actions/post.action";
 import toast from "react-hot-toast";
+import ImageUploads from "./ImageUploads";
 
 const CreatePost = () => {
   const { user } = useUser();
@@ -54,6 +55,18 @@ const CreatePost = () => {
           </div>
 
           {/* handleImageUplods */}
+          {(showImageUpload || imageUrl) && (
+            <div className="border rounded-lg p-4">
+              <ImageUploads
+                endPoint="postImage"
+                onChange={(url) => {
+                  setImageUrl(url);
+                  if (!url) setShowImageUpload(!!url);
+                }}
+                value={imageUrl}
+              />
+            </div>
+          )}
 
           <section className="flex items-center justify-between border-t pt-4">
             <div className="flex space-x-2">

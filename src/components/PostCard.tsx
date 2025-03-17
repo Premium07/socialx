@@ -141,6 +141,8 @@ const PostCard = ({
               <Image
                 src={post.image}
                 alt="Post content"
+                width={160}
+                height={160}
                 className="w-full h-auto object-cover"
               />
             </div>
@@ -152,11 +154,10 @@ const PostCard = ({
               <Button
                 variant="ghost"
                 size="sm"
-                className={`text-muted-foreground gap-2 ${
-                  hasLiked
-                    ? "text-red-500 hover:text-red-600"
-                    : "hover:text-red-500"
-                }`}
+                className={`text-muted-foreground gap-2 ${hasLiked
+                  ? "text-red-500 hover:text-red-600"
+                  : "hover:text-red-500"
+                  }`}
                 onClick={handleLike}
               >
                 {hasLiked ? (
@@ -186,9 +187,8 @@ const PostCard = ({
               onClick={() => setShowComments((prev) => !prev)}
             >
               <MessageCircleIcon
-                className={`size-5 ${
-                  showComments ? "fill-blue-500 text-blue-500" : ""
-                }`}
+                className={`size-5 ${showComments ? "fill-blue-500 text-blue-500" : ""
+                  }`}
               />
               <span>{post.comments.length}</span>
             </Button>
