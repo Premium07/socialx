@@ -1,6 +1,6 @@
 "use client";
-import { SignInButton, SignOutButton, useAuth } from "@clerk/nextjs";
-// import { useTheme } from "next-themes";
+
+import { SignInButton, SignOutButton, useAuth, useUser } from "@clerk/nextjs";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import ThemeToggler from "./ThemeToggler";
@@ -11,19 +11,18 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import {
-  BellIcon,
-  HomeIcon,
-  LogOutIcon,
-  MenuIcon,
-  UserIcon,
-} from "lucide-react";
+import { BellIcon, HomeIcon, LogOutIcon, MenuIcon, UserIcon } from "lucide-react";
 import Link from "next/link";
 
 const MobileNavbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { isSignedIn } = useAuth();
-  // const { theme, setTheme } = useTheme();
+  const { user } = useUser(); // Fetch user details from Clerk
+
+  // Generate the profile URL
+  const profileUrl = user
+    ? `/profile/${user.username ?? user.primaryEmailAddress?.emailAddress.split("@")[0]}`
+    : "/profile";
 
   return (
     <section className="flex md:hidden items-center space-x-2">
@@ -36,16 +35,12 @@ const MobileNavbar = () => {
           </Button>
         </SheetTrigger>
 
-        <SheetContent side={"right"} className="w-[300px]">
+        <SheetContent side="right" className="w-[300px]">
           <SheetHeader>
             <SheetTitle>Menu</SheetTitle>
           </SheetHeader>
           <nav className="flex flex-col space-y-4 mt-6">
-            <Button
-              variant="ghost"
-              className="flex items-center gap-3 justify-start"
-              asChild
-            >
+            <Button variant="ghost" className="flex items-center gap-3 justify-start" asChild>
               <Link href="/">
                 <HomeIcon className="size-5" />
                 Home
@@ -54,31 +49,20 @@ const MobileNavbar = () => {
 
             {isSignedIn ? (
               <>
-                <Button
-                  variant="ghost"
-                  className="flex items-center gap-3 justify-start"
-                  asChild
-                >
+                <Button variant="ghost" className="flex items-center gap-3 justify-start" asChild>
                   <Link href="/notifications">
                     <BellIcon className="size-5" />
                     Notifications
                   </Link>
                 </Button>
-                <Button
-                  variant="ghost"
-                  className="flex items-center gap-3 justify-start"
-                  asChild
-                >
-                  <Link href={`/profile/`}>
+                <Button variant="ghost" className="flex items-center gap-3 justify-start" asChild>
+                  <Link href={profileUrl}>
                     <UserIcon className="size-5" />
                     Profile
                   </Link>
                 </Button>
                 <SignOutButton>
-                  <Button
-                    variant="ghost"
-                    className="flex items-center gap-3 justify-start w-full"
-                  >
+                  <Button variant="ghost" className="flex items-center gap-3 justify-start w-full">
                     <LogOutIcon className="size-5" />
                     Logout
                   </Button>
