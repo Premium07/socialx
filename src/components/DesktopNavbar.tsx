@@ -30,10 +30,9 @@ const DesktopNavbar = async () => {
           </Button>
           <Button variant="ghost" className="flex items-center gap-2" asChild>
             <Link
-              href={`/profile/${
-                user.username ??
+              href={`/profile/${user.username ??
                 user.emailAddresses[0].emailAddress.split("@")[0]
-              }`}
+                }`}
             >
               <UserIcon className="size-5" />
               <span className="hidden lg:inline">Profile</span>
@@ -42,7 +41,7 @@ const DesktopNavbar = async () => {
           <UserButton />
         </>
       ) : (
-        <SignInButton mode="modal">
+        <SignInButton mode="modal" appearance={{ baseTheme: 'dark' }}>
           <Button>Sign In</Button>
         </SignInButton>
       )}
