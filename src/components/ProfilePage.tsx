@@ -81,7 +81,7 @@ const ProfilePage = ({
       await toggleFollow(user.id);
       setIsFollowing(!isFollowing);
       //   toast.success("action performed");
-    } catch (error) {
+    } catch {
       toast.error("Failed to perfom action.");
     } finally {
       setIsUpdatingFollow(false);

@@ -43,7 +43,11 @@ const NotificationsPage = () => {
         const unreadIds = data.filter((n) => !n.read).map((n) => n.id);
         if (unreadIds.length > 0) await markNotificationsAsRead(unreadIds);
       } catch (error) {
-        toast.error("Failed to fetch notifications.");
+        if (error instanceof Error) {
+          toast.error(error.message);
+        } else {
+          toast.error("An unknown error occurred");
+        }
         setNotifications([]);
       } finally {
         setIsLoading(false);
@@ -74,9 +78,8 @@ const NotificationsPage = () => {
               notifications.map((notification) => (
                 <div
                   key={notification.id}
-                  className={`flex items-start gap-4 p-4 border-b hover:bg-muted/25 transition-colors ${
-                    !notification.read ? "bg-muted/50" : ""
-                  }`}
+                  className={`flex items-start gap-4 p-4 border-b hover:bg-muted/25 transition-colors ${!notification.read ? "bg-muted/50" : ""
+                    }`}
                 >
                   <Avatar className="mt-1">
                     <AvatarImage
@@ -94,8 +97,8 @@ const NotificationsPage = () => {
                         {notification.type === "FOLLOW"
                           ? "started following you"
                           : notification.type === "LIKE"
-                          ? "liked your post"
-                          : "commented on your post"}
+                            ? "liked your post"
+                            : "commented on your post"}
                       </span>
                     </div>
 
