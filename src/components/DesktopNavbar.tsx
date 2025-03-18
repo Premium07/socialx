@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { BellIcon, HomeIcon, UserIcon } from "lucide-react";
 import { SignInButton, UserButton } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 const DesktopNavbar = async () => {
   const user = await currentUser();
@@ -41,7 +42,7 @@ const DesktopNavbar = async () => {
           <UserButton />
         </>
       ) : (
-        <SignInButton mode="modal" appearance={{ baseTheme: 'dark' }}>
+        <SignInButton mode="modal" appearance={{ baseTheme: dark }}>
           <Button>Sign In</Button>
         </SignInButton>
       )}
