@@ -1,6 +1,9 @@
 ## This is a Social Media Platform (Social X)
-## Tech Stacks
-
+Tech Stacks
+<li>NextJs </li>
+<li>PostgreSQL</li>
+<li>Prisma</li>
+<li>Clerk - for Authentication</li>
 
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
