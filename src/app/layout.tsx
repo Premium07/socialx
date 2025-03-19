@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -8,15 +8,10 @@ import Sidebar from "@/components/Sidebar";
 import { Toaster } from "react-hot-toast";
 import { dark } from "@clerk/themes";
 
-const inter = Inter({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-});
-
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  weight: "100"
+  weight: ["300", "400", "500", "600", "700"], // Add the weights you need
 });
 
 export const metadata: Metadata = {
@@ -33,14 +28,14 @@ export default function RootLayout({
   return (
     <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en" suppressHydrationWarning>
-        <body className={`${inter.variable} ${plexMono.variable} antialiased`}>
+        <body>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
-            <main className="min-h-screen">
+            <main className="min-h-screen `${poppins.variable} antialiased`">
               <header>
                 <Navbar />
               </header>
